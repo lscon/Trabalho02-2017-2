@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -53,7 +54,9 @@ public class ActivityPrincipal extends AppCompatActivity {
         if (resultCode == RESULT_OK &&
                 requestCode == REQUEST_CODE_INFO) {
             if (dados.hasExtra(" nome")) {
-
+                TextView tvNome = (TextView) findViewById(R.id.tvNome);
+                String nome = (String) dados.getSerializableExtra("nome");
+                tvNome.setText(nome);
             }
         }
     }
