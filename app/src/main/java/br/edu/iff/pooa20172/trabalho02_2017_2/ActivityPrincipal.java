@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class ActivityPrincipal extends AppCompatActivity {
 
-    private static final int REQUEST_CODE_SEGUNDA = 0;
+    private static final int REQUEST_CODE_INFO = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,6 @@ public class ActivityPrincipal extends AppCompatActivity {
         final ArrayList<Evento> eventos = adicionarEventos();
 
         ArrayAdapter adapter = new EventoAdapter(this, eventos);
-        lista.setAdapter(adapter);
 
         lista.setAdapter(adapter);
 
@@ -44,9 +43,19 @@ public class ActivityPrincipal extends AppCompatActivity {
                 intent.putExtra("promotor", eventos.get(i).getPromotor());
                 intent.putExtra("patrocinio", eventos.get(i).getPatrocinio());
                 intent.putExtra("valorIngresso", eventos.get(i).getValorIngresso());
-                startActivityForResult(intent, REQUEST_CODE_SEGUNDA);
+                startActivityForResult(intent, REQUEST_CODE_INFO);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent dados) {
+        if (resultCode == RESULT_OK &&
+                requestCode == REQUEST_CODE_INFO) {
+            if (dados.hasExtra(" nome")) {
+
+            }
+        }
     }
 
     private ArrayList<Evento> adicionarEventos() {
